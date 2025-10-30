@@ -3,7 +3,6 @@ package com.example.midterm_fellipe_camargo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -23,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     EditText number_text;
     int num;
     private static ArrayList<Integer> results = new ArrayList<>(10);
+    private static ArrayList<ArrayList<Integer>> historyResults = new ArrayList<>();
     private ArrayAdapter<Integer> adapter;
 
     @Override
@@ -70,7 +70,13 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            for (int i = 0; i < 10; i++) {
+            // Save current results
+            if (!results.isEmpty()) {
+                // Save a copy
+                historyResults.add(new ArrayList<>(results));
+            }
+            results.clear();
+            for (int i = 1; i < 11; i++) {
                 results.add(num * i);
             }
 
@@ -80,10 +86,10 @@ public class MainActivity extends AppCompatActivity {
             listView.setAdapter(adapter);
 
 
-//            Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
-//            // Pass data to the other activity
-//            intent.putExtra("result", results);
-//            startActivity(intent);
+            Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+            // Pass data to the other activity
+            intent.putExtra("history", historyResults);
+            startActivity(intent);
         });
     }
 }
