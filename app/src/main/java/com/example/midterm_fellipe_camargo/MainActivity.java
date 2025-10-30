@@ -86,10 +86,10 @@ public class MainActivity extends AppCompatActivity {
             listView.setAdapter(adapter);
 
 
-            Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
-            // Pass data to the other activity
-            intent.putExtra("history", historyResults);
-            startActivity(intent);
+//            Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+//            // Pass data to the other activity
+//            intent.putExtra("history", historyResults);
+//            startActivity(intent);
         });
     }
 }

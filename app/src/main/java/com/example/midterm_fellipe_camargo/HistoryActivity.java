@@ -21,6 +21,8 @@ import java.util.ArrayList;
 
 public class HistoryActivity extends AppCompatActivity {
 
+    ArrayList<ArrayList<Integer>> historyResults =
+            (ArrayList<ArrayList<Integer>>) getIntent().getSerializableExtra("history");
     private static ArrayList<String> results = new ArrayList<>();
     private ArrayAdapter<String> adapter;
 
@@ -43,16 +45,6 @@ public class HistoryActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        ListView listView = findViewById(R.id.list_view);
-
-        String result = getIntent().getStringExtra("history");
-        if (result != null) {
-            results.add(result);
-        }
-
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, results);
-        listView.setAdapter(adapter);
     }
 
     @Override
